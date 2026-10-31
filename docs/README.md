@@ -9,6 +9,7 @@ future user-provided spec.
 - `FEATURE_INTAKE.md`: how prompts become tiny, normal, or high-risk work.
 - `ARCHITECTURE.md`: architecture discovery and boundary rules.
 - `DESIGN.md`: art direction, tokens, motion, performance budget, design review.
+- `MOTION.md`: mandatory GSAP motion contracts, lifecycle rules, and proof.
 - `CONTENT_RULES.md`: no invented facts; placeholders and the missing ledger.
 - `QUICKSTART.md`: first-run setup.
 - `TEST_MATRIX.md`: proof map and per-lane checks; current proof status is
@@ -25,6 +26,7 @@ future user-provided spec.
 - `decisions/`: durable decisions and tradeoffs.
 - `demo/`: concrete walkthroughs that show how the harness transforms input
   into agent-ready work.
+- `ART_DIRECTION.md`, `MOTION_RECIPES.md`: how to choose a look and which motion patterns to use.
 - `templates/`: reusable spec-intake, story, plan, decision, and validation
   formats.
 

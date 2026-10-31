@@ -69,7 +69,7 @@ Harness v0 includes:
 - Durable layer: SQLite database and CLI for operational records.
 - A locked default web stack and database (`docs/decisions/0009-web-stack.md`,
   `0011-postgresql-database.md`) and a single-repo design and content policy
-  (`docs/DESIGN.md`, `docs/CONTENT_RULES.md`).
+  (`docs/DESIGN.md`, `docs/MOTION.md`, `docs/CONTENT_RULES.md`).
 
 Harness v0 deliberately excludes:
 
@@ -372,7 +372,7 @@ A task is done only when:
 
 ## Validation Ladder
 
-Stack: Next.js + TypeScript + pnpm + PostgreSQL
+Stack: Next.js + TypeScript + pnpm + GSAP + `@gsap/react` + PostgreSQL
 (`docs/decisions/0009-web-stack.md`, `0011-postgresql-database.md`). The `pnpm`
 scripts below are wired by the first implementation story; until the app is
 scaffolded they do not exist yet and must not be claimed as passing.
@@ -389,7 +389,8 @@ test:integration pnpm db:migrate:test && pnpm test:integration
 
 test:e2e         pnpm test:e2e
   Playwright user flows + @axe-core/playwright accessibility assertions, at
-  375px and desktop, plus a prefers-reduced-motion run.
+  375px and desktop, visible motion-contract assertions, plus a
+  prefers-reduced-motion run that proves content remains usable.
 
 test:perf        pnpm test:perf
   Lighthouse against the budget in docs/DESIGN.md (LCP, CLS, INP).
@@ -402,7 +403,7 @@ test:release     pnpm lint && pnpm typecheck && pnpm test && pnpm db:migrate:tes
   Full suite before a deploy story.
 
 design:review    docs/DESIGN.md section 8
-  Six-question review with cited evidence; content scan against
+  Seven-question review with cited evidence; content scan against
   docs/CONTENT_RULES.md; docs/product/MISSING.md is current.
 ```
 

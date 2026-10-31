@@ -5,7 +5,8 @@ Date: 2026-09-01
 ## Status
 
 Accepted. Amended 2026-10-12 by `0010-single-repo-design-ownership.md`
-(styling and design ownership) and `0011-postgresql-database.md` (database).
+(styling and design ownership) and `0011-postgresql-database.md` (database),
+then 2026-10-27 by `0013-required-gsap-ui-motion.md` (required UI motion).
 
 ## Context
 
@@ -24,7 +25,7 @@ Default stack:
 | Language | TypeScript (strict) |
 | Package manager | pnpm |
 | Styling | CSS Modules + CSS custom properties (`app/styles/tokens.css`); no Tailwind, no CSS-in-JS runtime |
-| Motion | CSS transitions/animations + `IntersectionObserver`; no animation library by default |
+| Motion | GSAP + `@gsap/react` required for route-level UI motion; CSS for simple hover/focus feedback |
 | Fonts | `next/font` (self-hosted), Vietnamese-capable |
 | Database | PostgreSQL (`0011-postgresql-database.md`) |
 | Data access | Drizzle ORM + `pg`; SQL migrations in `db/migrations/` |
@@ -49,6 +50,8 @@ only when the first implementation story needs it.
    per-site art direction harder to keep distinct.
 4. Plain HTML/CSS/JS — lightest, but no back end in the same repo and no image
    or SEO tooling.
+5. CSS + `IntersectionObserver` only — smallest bundle, but rejected as the
+   default by `0013` because it did not require or prove visible GSAP effects.
 
 ## Consequences
 
@@ -58,6 +61,8 @@ Positive:
   can reference concrete `pnpm` scripts.
 - SSR/SEO/routing/image optimization handled by the framework; back end and
   front end live in one codebase.
+- GSAP timelines and plugins provide one consistent motion engine across
+  generated sites.
 
 Tradeoffs:
 
@@ -65,6 +70,8 @@ Tradeoffs:
   back end.
 - Locks Node tooling; changing later is a new decision.
 - Hand-written CSS takes more effort than utility classes.
+- GSAP adds client JavaScript and makes reduced-motion, cleanup, and browser
+  proof mandatory for UI stories.
 
 ## Follow-Up
 

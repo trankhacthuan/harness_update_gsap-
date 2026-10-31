@@ -86,6 +86,15 @@ scripts in `package.json`; create `app/styles/tokens.css`; lay out folders per
 `server-only` guard (`docs/decisions/0012-project-structure.md`); record the
 setup in the story's evidence.
 
+Install the required UI motion runtime during that first implementation story:
+
+```powershell
+pnpm add gsap @gsap/react
+```
+
+Create the smallest client-only motion boundary described in `docs/MOTION.md`;
+do not turn an otherwise static page into one large Client Component.
+
 ### Database credentials
 
 Put them in `.env.local` (git-ignored; never paste them into chat or commit
@@ -108,3 +117,7 @@ application role that is not a superuser. The first data story adds a committed
    `docs/product/MISSING.md`.
 3. The reservation form and its database are a high-risk story; expect a story
    folder and a decision record before code.
+
+For the first UI story, copy `docs/templates/starter/tokens.css` to
+`app/styles/tokens.css` and the files in `docs/templates/starter/e2e/` to `e2e/`,
+then adapt them (`docs/ART_DIRECTION.md`, `docs/MOTION_RECIPES.md`).

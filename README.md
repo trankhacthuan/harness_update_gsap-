@@ -63,14 +63,14 @@ manual hand-off (`docs/decisions/0010-single-repo-design-ownership.md`).
 | Concern | Where |
 | --- | --- |
 | Product brief | `docs/product/PRODUCT.md`, `docs/templates/brief-restaurant.md` |
-| Art direction, tokens, motion, performance budget | `docs/DESIGN.md` |
+| Art direction, tokens, motion, performance budget | `docs/DESIGN.md`, `docs/MOTION.md` |
 | Content integrity (no invented facts) | `docs/CONTENT_RULES.md`, `docs/product/MISSING.md` |
-| Front end and back end | Next.js App Router, CSS Modules |
+| Front end and back end | Next.js App Router, CSS Modules, GSAP + `@gsap/react` |
 | Database | PostgreSQL via Drizzle (`docs/decisions/0011-postgresql-database.md`) |
 | Proof | validation ladder in `docs/HARNESS.md` |
 
 **Stack** — Next.js (App Router) + TypeScript + pnpm, CSS Modules + CSS
-variables, PostgreSQL, tested with Vitest, Playwright, and Lighthouse
+variables, GSAP + `@gsap/react`, PostgreSQL, tested with Vitest, Playwright, and Lighthouse
 (`docs/decisions/0009-web-stack.md`). The application is scaffolded by the first
 implementation story, not before.
 
@@ -121,10 +121,10 @@ product idea
   ├─ docs/product/PRODUCT.md ....... the brief; gaps tracked in MISSING.md
   ├─ feature intake ............... tiny / normal / high-risk   (docs/FEATURE_INTAKE.md)
   ├─ story packet ................. one vertical slice          (docs/templates/story.md)
-  ├─ design decisions ............ type · color · layout idea  (docs/DESIGN.md)
+  ├─ design decisions ............ type · color · layout · motion contract
   ├─ implementation .............. front end · back end · database
   ├─ validation ladder ........... lint · types · tests · e2e · perf  (docs/HARNESS.md)
-  ├─ design review ............... six questions, cited evidence
+  ├─ design review ............... seven questions, cited evidence
   └─ trace + decision ............ evidence for the next agent
 ```
 
@@ -140,6 +140,9 @@ docs/
   FEATURE_INTAKE.md    Risk classification and lanes.
   ARCHITECTURE.md      Project layout (feature-first), import rules, data flow.
   DESIGN.md            Art direction, tokens, motion, performance, design review.
+  MOTION.md            Required GSAP motion contract, implementation, and proof.
+  MOTION_RECIPES.md    Copyable GSAP patterns (hero, batch reveal, scroll, dialog).
+  ART_DIRECTION.md     Direction presets, anti-template rules, image sourcing.
   CONTENT_RULES.md     No invented facts; placeholders and the missing ledger.
   CONTEXT_RULES.md     What to read, per lane and phase.
   QUICKSTART.md        First-run setup.

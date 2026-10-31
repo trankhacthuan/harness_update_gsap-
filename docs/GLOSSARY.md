@@ -14,6 +14,12 @@ into safe product changes.
 The current expected behavior of the product. Product docs plus executable tests
 become the living contract once implementation exists.
 
+## Motion Contract
+
+The required pre-implementation description of a UI effect: purpose, GSAP
+targets, trigger, sequence, reduced-motion final state, cleanup, and browser
+proof. Every story that adds or changes user-facing UI includes one.
+
 ## Story Packet
 
 A story-sized work file or folder that describes the product contract, affected

@@ -39,7 +39,9 @@ Chi tiết thật làm chất liệu viết nội dung (bắt buộc điền 2-3
 - Màu: 1 màu nền, 1 màu chữ, 1 màu nhấn duy nhất lấy từ [MÀU THƯƠNG HIỆU]. Không thêm màu nhấn thứ hai. Tương phản đạt WCAG AA.
 - Bố cục: mỗi section dùng cấu trúc khác nhau (ảnh tràn lề, chia cột bất đối xứng, chữ lớn chồng lên ảnh, menu trình bày như thực đơn in). Tối đa 1 section dạng lưới card đồng dạng.
 - Cấm: gradient màu mè, glassmorphism, glow, icon trang trí vô nghĩa, bóng đổ dày, bo góc đồng loạt, animation gây phân tâm.
-- Chuyển động: chỉ fade/slide nhẹ khi cuộn, hover, chuyển ảnh; tôn trọng prefers-reduced-motion.
+- Chuyển động: bắt buộc dùng GSAP cho hero timeline, section reveal hoặc chuyển
+  ảnh; mỗi trang có motion contract; không gây phân tâm và luôn có trạng thái
+  thay thế cho `prefers-reduced-motion`.
 - Ảnh placeholder: khung đúng tỷ lệ cuối cùng, nền trung tính, kèm mô tả ảnh cần chụp (vd: "[CẦN BỔ SUNG ẢNH: cận cảnh tô [MÓN], khói bốc, ánh sáng bên trái]") để layout vẫn đẹp khi chưa có ảnh thật.
 - Giọng văn: cụ thể, giàu giác quan, dựa trên chi tiết thật. Tốt: "Nước dùng ninh 12 tiếng từ xương ống." Xấu: "Hương vị tinh hoa hội tụ", "trải nghiệm ẩm thực tuyệt vời". Chi tiết chưa có thì để placeholder, không bịa cho hay.
 
@@ -60,7 +62,7 @@ Trang chủ (/):
 Trang phụ: /menu (chia danh mục, dễ đọc trên điện thoại), /about, /gallery, /contact, /news (chỉ khi có nội dung thật).
 
 # KỸ THUẬT
-- Stack cố định theo repo (`docs/decisions/0009-web-stack.md`, `0011-postgresql-database.md`): Next.js (App Router) + TypeScript, CSS Modules + CSS variables, PostgreSQL. Không phụ thuộc thư viện nặng không cần thiết.
+- Stack cố định theo repo (`docs/decisions/0009-web-stack.md`, `0011-postgresql-database.md`): Next.js (App Router) + TypeScript, CSS Modules + CSS variables, GSAP + `@gsap/react`, PostgreSQL. Không phụ thuộc thư viện nặng không cần thiết ngoài motion stack đã duyệt.
 - Mobile-first, responsive; ưu tiên tốc độ: ảnh lazy-load, đúng kích thước, width/height khai báo để tránh layout shift. Ngân sách hiệu năng theo `docs/DESIGN.md`.
 - Form đặt bàn: validate phía client và phía server (tên, SĐT VN, số khách, ngày giờ không ở quá khứ), thông báo lỗi dễ hiểu, trạng thái loading/thành công/thất bại. Gửi tới route nội bộ `/api/reservations` và lưu vào PostgreSQL. Không gọi dịch vụ ngoài (email, Zalo, Maps API). Nếu chưa kết nối được database, API trả 503, form hiện thông báo kèm nút gọi [SĐT], các trang khác vẫn hoạt động bình thường; phần đặt bàn ghi rõ "chưa kiểm chứng với PostgreSQL" cho đến khi chạy được test thật.
 - Google Maps: dùng link/chỉ đường từ [LINK], không dùng API.
@@ -80,3 +82,5 @@ Bước 4: Liệt kê nội dung/tài sản còn thiếu. Dừng lại; chỉ l�
 4. Có nội dung nào bịa hoặc chưa có nguồn? Liệt kê và thay bằng placeholder.
 5. Trên màn hình 375px: chữ, nút gọi, form, menu điều hướng có dùng thoải mái không?
 6. Dấu tiếng Việt hiển thị đúng ở mọi font và cỡ chữ?
+7. Mỗi route có hiệu ứng GSAP nhìn thấy được, chạy đúng trigger và vẫn đọc/dùng
+   được khi bật `prefers-reduced-motion`?

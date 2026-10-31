@@ -21,8 +21,8 @@ Status values:
 
 | # | Responsibility | Status | Harness Files | Evidence | Gap |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Task specification | Covered | `AGENTS.md`, `docs/FEATURE_INTAKE.md`, `docs/templates/story.md`, `docs/templates/spec-intake.md`, `docs/templates/high-risk-story/*`, `docs/stories/*`, `intake` table, `story` table | Requests are classified by type and lane before implementation; normal and high-risk work have templates and durable story rows. | Keep story packets synchronized with future product docs. |
-| 2 | Context selection | Covered | `AGENTS.md`, `docs/CONTEXT_RULES.md`, `docs/ARCHITECTURE.md`, `docs/decisions/*`, `docs/product/README.md`, `scripts/bin/harness-cli score-context` | Phase 2 adds phase-by-lane context rules and retrieval triggers; Phase 5 adds context scoring against recorded trace reads. | Future automation could enforce context selection instead of only measuring it. |
+| 1 | Task specification | Covered | `AGENTS.md`, `docs/FEATURE_INTAKE.md`, `docs/MOTION.md`, `docs/templates/story.md`, `docs/templates/spec-intake.md`, `docs/templates/high-risk-story/*`, `docs/stories/*`, `intake` table, `story` table | Requests are classified by type and lane before implementation; normal and high-risk work have templates and durable story rows; UI work carries a motion contract. | Keep story packets synchronized with future product docs. |
+| 2 | Context selection | Covered | `AGENTS.md`, `docs/CONTEXT_RULES.md`, `docs/ARCHITECTURE.md`, `docs/MOTION.md`, `docs/decisions/*`, `docs/product/README.md`, `scripts/bin/harness-cli score-context` | Phase 2 adds phase-by-lane context rules and retrieval triggers; UI triggers retrieve the GSAP motion policy; Phase 5 adds context scoring against recorded trace reads. | Future automation could enforce context selection instead of only measuring it. |
 | 3 | Tool access | Covered | `scripts/bin/harness-cli`, `docs/TOOL_REGISTRY.md`, `tool` table, `crates/harness-cli/*`, `scripts/install-harness.sh`, `scripts/build-harness-cli-release.sh` | The Harness CLI exposes operational commands and a machine-readable tool manifest through `query tools`; external tools can be registered and removed. | Permission profiles and usage analytics remain future work. |
 | 4 | Project memory | Covered | `docs/HARNESS.md`, `docs/decisions/*`, `docs/GLOSSARY.md`, `docs/HARNESS_BACKLOG.md`, `docs/stories/*`, `harness.db`, `decision`, `backlog`, and `trace` tables | Decisions, backlog, stories, and traces preserve durable knowledge across tasks. | Future work should add staleness checks and summarize old traces. |
 | 5 | Task state | Covered | `scripts/bin/harness-cli query matrix`, `docs/TEST_MATRIX.md`, `intake` table, `story` table, `trace` table | Durable records track intake, story status, proof columns, and task traces. | Add lifecycle checks so in-progress stories cannot be forgotten. |
@@ -41,7 +41,7 @@ Status values:
 | Tool descriptions | `docs/TOOL_REGISTRY.md`, `scripts/README.md`, `docs/HARNESS.md`, `docs/TRACE_SPEC.md`, CLI help from `crates/harness-cli/src/interface.rs`, `scripts/bin/harness-cli query tools` | Covered | Commands are documented in a standalone registry and exposed as compiled plus registered tool manifest entries. |
 | Tool implementations | `scripts/bin/harness-cli`, `crates/harness-cli/*`, `scripts/schema/001-init.sql`, `scripts/schema/002-story-verify.sql` | Covered | The Rust CLI is the primary durable-layer implementation and stable repo-local entrypoint. |
 | Middleware | installer safety logic, feature intake workflow | Partial | The installer and intake process mediate work, but there is no runtime middleware enforcing policies. |
-| Skills | `docs/templates/*`, `docs/FEATURE_INTAKE.md`, `docs/CONTEXT_RULES.md`, `docs/TRACE_SPEC.md` | Partial | Reusable procedures exist as markdown, not executable or installable agent skills. |
+| Skills | `docs/templates/*`, `docs/FEATURE_INTAKE.md`, `docs/CONTEXT_RULES.md`, `docs/MOTION.md`, `docs/TRACE_SPEC.md` | Partial | Reusable procedures, including the harness-native GSAP policy, exist as markdown; external Agent Skills remain optional. |
 | Sub-agents | None in this repository | Missing | No delegated specialist agents or sub-agent protocols exist. |
 | Long-term memory | `harness.db`, `docs/decisions/*`, `docs/stories/*`, `docs/HARNESS_BACKLOG.md`, `docs/GLOSSARY.md` | Covered | Durable records and markdown decisions preserve task history and project vocabulary. |
 
@@ -70,6 +70,11 @@ one Runtime Substrate responsibility.
 | `crates/harness-cli/src/interface.rs` | Tool access | Context selection, verification |
 | `docs/ARCHITECTURE.md` | Permissions | Context selection, task specification |
 | `docs/FEATURE_INTAKE.md` | Task specification | Permissions, context selection |
+| `docs/MOTION.md` | Task specification | Context selection, verification |
+| `docs/MOTION_RECIPES.md` | Task specification | Context selection |
+| `docs/ART_DIRECTION.md` | Task specification | Context selection, verification |
+| `docs/templates/brief-generic.md` | Task specification | Context selection |
+| `docs/templates/starter/*` | Verification | Task specification |
 | `docs/GLOSSARY.md` | Project memory | Context selection |
 | `docs/HARNESS.md` | Task specification | Project memory, task state, permissions |
 | `docs/HARNESS_BACKLOG.md` | Entropy auditing | Project memory, failure attribution |
@@ -89,6 +94,7 @@ one Runtime Substrate responsibility.
 | `docs/decisions/0005-prebuilt-rust-harness-cli.md` | Project memory | Tool access |
 | `docs/decisions/0006-phase-4-benchmark-triage.md` | Project memory | Verification |
 | `docs/decisions/0007-improvement-proposal-rules.md` | Project memory | Entropy auditing, permissions |
+| `docs/decisions/0013-required-gsap-ui-motion.md` | Project memory | Task specification, verification |
 | `docs/decisions/README.md` | Project memory | Context selection |
 | `docs/demo/README.md` | Task specification | Project memory |
 | `docs/product/README.md` | Task specification | Project memory |
@@ -109,6 +115,7 @@ one Runtime Substrate responsibility.
 | `docs/stories/US-022-context-rule-measurement.md` | Task specification | Context selection |
 | `docs/stories/US-023-drift-detection-entropy-score.md` | Task specification | Entropy auditing |
 | `docs/stories/US-024-improvement-proposal-pipeline.md` | Task specification | Entropy auditing, permissions |
+| `docs/stories/US-028-required-gsap-ui-motion.md` | Task specification | Context selection, verification |
 | `docs/stories/backlog.md` | Task specification | Project memory |
 | `docs/stories/epics/README.md` | Task specification | Project memory |
 | `docs/stories/epics/E01-durable-layer/US-002-rust-harness-cli/overview.md` | Task specification | Project memory |

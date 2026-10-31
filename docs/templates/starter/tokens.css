@@ -1,0 +1,100 @@
+/*
+ * Starter design tokens -> copy to app/styles/tokens.css in the first
+ * implementation story, then REPLACE the palette, families, and scale with the
+ * values chosen for this site (docs/ART_DIRECTION.md). Components read only
+ * var(--...) values; no raw hex, px font sizes, or ms values in components.
+ * Record measured contrast ratios beside the palette.
+ */
+:root {
+  /* Color: one background, one text, one accent (+ derived tints). */
+  --color-bg: #faf6ef;
+  --color-surface: #f1eadc;
+  --color-text: #221c14;
+  --color-text-muted: #5f5547;   /* >= 4.5:1 on --color-bg */
+  --color-accent: #9c3b1f;       /* >= 4.5:1 on --color-bg */
+  --color-on-accent: #fffaf2;
+  --color-line: rgb(34 28 20 / 0.14);
+  --color-placeholder: #e4dccb;
+
+  /* Type: families come from next/font variables set in app/layout.tsx. */
+  --font-display: var(--font-display-face, Georgia, serif);
+  --font-body: var(--font-body-face, system-ui, sans-serif);
+
+  /* Fluid type scale (375px -> 1440px). */
+  --text-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --text-lead: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+  --text-h3: clamp(1.375rem, 1.2rem + 0.9vw, 1.875rem);
+  --text-h2: clamp(1.875rem, 1.4rem + 2.2vw, 3.25rem);
+  --text-h1: clamp(2.5rem, 1.6rem + 4.6vw, 6rem);
+  --leading-body: 1.6;
+  --leading-display: 1.05;
+  --tracking-display: -0.02em;
+
+  /* Spacing: 4px base, generous section rhythm. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-section: clamp(4rem, 3rem + 6vw, 9rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --measure: 65ch;
+  --container: 80rem;
+
+  /* Shape and depth: restrained. */
+  --radius-1: 2px;
+  --radius-2: 6px;
+  --shadow-1: 0 1px 2px rgb(34 28 20 / 0.08);
+
+  /* Motion tokens (read in JS via getComputedStyle for GSAP; see MOTION_RECIPES). */
+  --motion-fast: 0.18s;
+  --motion-base: 0.4s;
+  --motion-slow: 0.7s;
+  --motion-distance: 24px;
+  --motion-stagger: 0.08s;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --z-header: 100;
+  --z-overlay: 200;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+  margin: 0;
+}
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+img, video { max-width: 100%; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

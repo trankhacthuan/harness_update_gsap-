@@ -1,7 +1,8 @@
 # Product Docs
 
 `PRODUCT.md` is the canonical product brief. It describes what this repo builds
-and is the starting point for design (`docs/DESIGN.md`) and implementation. Keep
+and is the starting point for design (`docs/DESIGN.md`), required UI motion
+(`docs/MOTION.md`), and implementation. Keep
 it current. `MISSING.md` is the ledger of content and assets still needed from
 the owner (`docs/CONTENT_RULES.md`).
 

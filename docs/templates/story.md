@@ -32,6 +32,18 @@ Describe the behavior this story must make true.
 - Domain types and rules:
 - SEO metadata needs:
 
+## Motion Contract
+
+Required for every story that adds or changes user-facing UI.
+
+- Purpose (cause, continuity, hierarchy, or feedback):
+- GSAP targets and owning Client Component:
+- Trigger and sequence/timeline:
+- ScrollTrigger/plugin use and justification:
+- `prefers-reduced-motion` final state:
+- Cleanup strategy (`useGSAP` scope / `gsap.context().revert()`):
+- E2E and visual proof:
+
 ## Web Page Checklist
 
 Fill this when the story adds or changes a route. Delete it for non-UI stories.
@@ -43,7 +55,8 @@ Fill this when the story adds or changes a route. Delete it for non-UI stories.
 - [ ] Labels / alt text / ARIA where needed (`jsx-a11y` clean, axe clean)
 - [ ] Responsive 320px → wide desktop, no horizontal scroll
 - [ ] Values come from `app/styles/tokens.css`; no raw design values in the CSS Module
-- [ ] Motion animates only `transform`/`opacity` and respects reduced motion
+- [ ] At least one visible GSAP-backed behavior satisfies the motion contract
+- [ ] Motion prefers `transform`/`autoAlpha`, is scoped/cleaned up, and respects reduced motion
 - [ ] Design review answered with evidence (`docs/DESIGN.md` section 8)
 - [ ] No invented content; placeholders listed in `docs/product/MISSING.md`
 - [ ] `metadata` exported if the route is indexable

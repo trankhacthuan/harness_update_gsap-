@@ -212,6 +212,7 @@ This repo uses Harness. Before work, read:
 - `docs/ARCHITECTURE.md`
 - `docs/CONTEXT_RULES.md`
 - `docs/TOOL_REGISTRY.md`
+- `docs/MOTION.md` for page, component, interaction, or animation work
 - `scripts/bin/harness-cli query matrix`
 
 Use the Rust Harness CLI at `scripts/bin/harness-cli` as the main operational
@@ -241,6 +242,8 @@ Also run `scripts/bin/harness-cli query matrix` before starting work.
 Lane-dependent context (`README.md`, `docs/HARNESS.md`, `docs/ARCHITECTURE.md`,
 `docs/CONTEXT_RULES.md`, product docs, stories, decisions) is intentionally not
 imported — read it per lane, as `docs/CONTEXT_RULES.md` prescribes.
+For page, component, interaction, or animation work, also read
+`docs/MOTION.md` before implementation.
 <!-- HARNESS:END -->
 EOF
 }
@@ -938,7 +941,19 @@ docs/HARNESS_BACKLOG.md
 docs/HARNESS_COMPONENTS.md
 docs/HARNESS_MATURITY.md
 docs/IMPROVEMENT_PROTOCOL.md
+docs/MOTION.md
+docs/MOTION_RECIPES.md
+docs/ART_DIRECTION.md
 docs/QUICKSTART.md
+docs/skills/gsap/LICENSE
+docs/skills/gsap/gsap-core/SKILL.md
+docs/skills/gsap/gsap-frameworks/SKILL.md
+docs/skills/gsap/gsap-performance/SKILL.md
+docs/skills/gsap/gsap-plugins/SKILL.md
+docs/skills/gsap/gsap-react/SKILL.md
+docs/skills/gsap/gsap-scrolltrigger/SKILL.md
+docs/skills/gsap/gsap-timeline/SKILL.md
+docs/skills/gsap/gsap-utils/SKILL.md
 docs/README.md
 docs/TEST_MATRIX.md
 docs/TOOL_REGISTRY.md
@@ -955,6 +970,7 @@ docs/decisions/0009-web-stack.md
 docs/decisions/0010-single-repo-design-ownership.md
 docs/decisions/0011-postgresql-database.md
 docs/decisions/0012-project-structure.md
+docs/decisions/0013-required-gsap-ui-motion.md
 docs/decisions/README.md
 docs/product/README.md
 docs/product/MISSING.md
@@ -963,6 +979,10 @@ docs/stories/README.md
 docs/stories/backlog.md
 docs/templates/decision.md
 docs/templates/brief-restaurant.md
+docs/templates/brief-generic.md
+docs/templates/starter/tokens.css
+docs/templates/starter/e2e/motion.spec.ts
+docs/templates/starter/e2e/visual.spec.ts
 docs/templates/spec-intake.md
 docs/templates/story.md
 docs/templates/validation-report.md

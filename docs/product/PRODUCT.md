@@ -65,12 +65,16 @@ Keep this file current. Content gaps are placeholders listed in
 - Existing brand assets? (logo, colors, fonts) — link or "none":
 - Density: airy / balanced / compact
 - Mood: light / dark / either
-- Motion: none / subtle / expressive
+- Motion profile: `subtle-gsap` (default) / `expressive-gsap` / `none` only
+  when the owner explicitly requests no motion
+- Required motion moments (route, element, trigger, intended effect):
 - Imagery style: photographic / illustrated / abstract / none
 
 ## 10. Hard constraints
 
 - Accessibility: WCAG 2.1 AA baseline (non-negotiable)
+- UI motion: GSAP-backed motion contract per user-facing route; usable final
+  state under `prefers-reduced-motion`
 - Responsive: works 320px → wide desktop
 - Performance budget: <e.g. LCP < 2.5s on 4G, JS < 200KB gzip>
 - SEO: <needed? which pages must be indexable / have metadata>

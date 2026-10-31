@@ -15,6 +15,9 @@ Explain what must pass before the story is done.
 | Performance | |
 | Logs/Audit | |
 
+For user-facing UI, E2E covers the visible GSAP behavior in normal motion and
+the complete usable final state under `prefers-reduced-motion`.
+
 ## Fixtures
 
 List deterministic users, accounts, records, provider responses, or other

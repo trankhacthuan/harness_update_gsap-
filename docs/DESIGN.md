@@ -8,9 +8,12 @@ not here.
 ## 1. Process
 
 1. Read the brief (`docs/product/PRODUCT.md`) and `docs/CONTENT_RULES.md`.
-2. Decide three things and record each with a one-line reason in the brief or
-   the story: the **type pair**, the **color system**, and the **layout idea**.
-3. Create tokens, then components, then pages. Values come from tokens.
+2. Decide four things and record each with a one-line reason in the brief or
+   the story: the **type pair**, the **color system**, the **layout idea**, and
+   the **motion contract**.
+3. Pick a direction from `docs/ART_DIRECTION.md`. Create tokens (start from
+   `docs/templates/starter/tokens.css`), then components, then pages. Values
+   come from tokens.
 4. Run the design review gate (section 8) and attach the evidence.
 
 ## 2. Tokens
@@ -44,14 +47,22 @@ not here.
 
 ## 5. Motion
 
-- Motion explains cause or continuity. Allowed: soft fade/slide on scroll
-  reveal, hover/focus feedback, image transitions.
-- Animate `transform` and `opacity` only. No animating layout properties, no
-  scroll hijacking, no autoplay loops, no parallax by default.
-- Durations stay between 120ms and 400ms with eased curves from tokens.
-- Reveal-on-scroll uses `IntersectionObserver` (a few lines, no library).
-- Under `prefers-reduced-motion: reduce`, replace movement with an instant
-  change or a short opacity fade.
+- Motion is required UI behavior, not optional polish. Every user-facing route
+  includes at least one purposeful GSAP-backed entrance, continuity, or state
+  transition unless the owner explicitly requests no motion.
+- Every page or component story records a motion contract: purpose, targets,
+  trigger, sequence, reduced-motion behavior, and proof.
+- Use GSAP + `@gsap/react` for page and component motion. CSS transitions are
+  reserved for simple native hover/focus feedback.
+- Prefer `transform` and `autoAlpha`; do not animate layout properties without
+  a recorded exception. No scroll hijacking, autoplay loops, or decorative
+  parallax by default.
+- Durations normally stay between 120ms and 600ms with eased curves from
+  tokens. A longer sequence must justify its pacing in the motion contract.
+- Under `prefers-reduced-motion: reduce`, remove spatial movement and pinning;
+  show the final readable state immediately or with a short opacity fade.
+- Follow `docs/MOTION.md` for GSAP lifecycle, ScrollTrigger, cleanup, and proof;
+  start from `docs/MOTION_RECIPES.md` and vary recipes across sections.
 
 ## 6. Performance budget
 
@@ -89,5 +100,23 @@ Answer each item with evidence — the section, line, or decision that proves it
    placeholder (`docs/CONTENT_RULES.md`).
 5. At 375px, are text, call button, forms, and navigation comfortable to use?
 6. Do Vietnamese diacritics render correctly in every font and size used?
+7. Does each route's motion contract name a visible GSAP behavior, prove it
+   runs, and define a usable reduced-motion fallback?
 
 Record the result in the story's evidence section.
+
+## 9. Visual review (look at the page)
+
+Rules and tests do not show whether a page looks good. Before reporting done:
+
+1. Capture screenshots at 375, 768, and 1440px with
+   `docs/templates/starter/e2e/visual.spec.ts` into `evidence/screens/`.
+2. Open each image and critique it in writing against this checklist:
+   - one clear focal point per screen; hierarchy readable in a squint test;
+   - consistent spacing rhythm; no cramped or accidentally empty areas;
+   - no two adjacent sections share one structure (section 4);
+   - text never overlaps images illegibly; contrast holds on photos;
+   - the page matches the chosen direction in `docs/ART_DIRECTION.md`;
+   - no clipped text, overflow, or layout shift at 375px.
+3. Fix every defect found, re-capture, and cite the final image names in the
+   story evidence. A human still judges taste on a real device.

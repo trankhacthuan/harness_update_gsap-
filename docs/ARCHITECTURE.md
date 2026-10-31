@@ -3,7 +3,8 @@
 Stack is locked in `docs/decisions/0009-web-stack.md` and
 `docs/decisions/0011-postgresql-database.md`:
 **Next.js (App Router) + TypeScript (strict) + pnpm**, CSS Modules + CSS
-variables, **PostgreSQL** via Drizzle ORM, tests with Vitest + Playwright.
+variables, **GSAP + `@gsap/react`**, **PostgreSQL** via Drizzle ORM, tests with
+Vitest + Playwright.
 Project layout is locked in `docs/decisions/0012-project-structure.md`.
 
 The app is **not scaffolded yet**. Create real folders and run `create-next-app`
@@ -20,8 +21,9 @@ This repository owns the visual design too
 - Every async surface ships explicit `loading`, `empty`, and `error` states.
 - Layout is mobile-first and responsive (fluid containers, no fixed pixel
   widths that break at 320px).
-- Motion is CSS plus `IntersectionObserver`; only `transform` and `opacity`
-  animate.
+- Every user-facing route has a motion contract and at least one GSAP-backed
+  behavior unless the owner explicitly requests no motion. Animate transforms
+  and `autoAlpha` by default; follow `docs/MOTION.md`.
 - Content gaps are visible placeholders tracked in `docs/product/MISSING.md`.
 
 ## Discovery Before Shape
@@ -85,6 +87,7 @@ components/                   Shared UI primitives (Button, Table, Tabs, Dialogâ
 content/                      Typed site copy and data (content sites only)
 lib/                          Cross-cutting: env (lazy), errors, logger,
                               time/timezone helpers, pure utilities
+  motion/                     Client-only GSAP registration and shared helpers
 
 db/
   client.ts                   Lazy connection (never connects at import)
@@ -171,6 +174,9 @@ rather than re-validating raw strings.
 
 - Default to Server Components. Add `"use client"` only for interactivity
   (state, effects, event handlers, browser APIs).
+- Keep pages as Server Components where possible. Put GSAP code in the
+  smallest Client Component that owns the animated DOM, use scoped refs, and
+  clean it up through `useGSAP()` or `gsap.context()`.
 - Server-only modules start with `import 'server-only'`. Client Components never
   import them; they may import `server/actions.ts` and nothing else from
   `server/`. Pass data down as serializable props.

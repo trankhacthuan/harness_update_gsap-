@@ -23,7 +23,7 @@ listed commands exist and have been run with output captured.
 | --- | --- | --- |
 | Unit | pure domain / validation / component logic | `pnpm test` (Vitest) |
 | Integration | route handlers, repositories, migrations against a real PostgreSQL | `pnpm db:migrate:test && pnpm test:integration` |
-| E2E | user-visible browser flows + accessibility (375px, desktop, reduced motion) | `pnpm test:e2e` (Playwright + axe) |
+| E2E | user-visible flows + accessibility + motion contract (375px, desktop, reduced motion) | `pnpm test:e2e` (Playwright + axe) |
 | Platform | performance budget, production build, deploy smoke | `pnpm test:perf`, `pnpm build` |
 
 ## Required Checks Per Lane
@@ -45,8 +45,11 @@ listed commands exist and have been run with output captured.
 - A story may ship without every proof column if its packet explains why.
 - Accessibility (WCAG 2.1 AA baseline) and the loading/empty/error states of
   every async surface are part of E2E proof, not optional polish.
-- Visual review is part of the proof: the six-question design review in
+- Visual review is part of the proof: the seven-question design review in
   `docs/DESIGN.md` is answered with cited evidence for every page or component
   that changes appearance.
+- UI proof identifies at least one GSAP-backed behavior per user-facing route,
+  triggers it in a normal-motion run, and confirms readable final content in a
+  reduced-motion run. Dependency presence or import text alone is not proof.
 - Content integrity (`docs/CONTENT_RULES.md`) is checked, and
   `docs/product/MISSING.md` must match the placeholders in the product.

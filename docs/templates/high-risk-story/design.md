@@ -20,6 +20,9 @@ Describe tables, indexes, migrations, and retention concerns.
 
 Describe browser, mobile, desktop, CLI, deployment, or platform-shell impact.
 
+For user-facing UI, include the `docs/MOTION.md` contract: purpose, GSAP
+targets, trigger/sequence, reduced-motion final state, cleanup, and proof.
+
 ## Observability
 
 Describe logs, audit records, metrics, or traces.

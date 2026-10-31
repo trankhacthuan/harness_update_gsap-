@@ -8,7 +8,7 @@ and validation (`docs/decisions/0010-single-repo-design-ownership.md`). There is
 no separate design repository to wait on.
 
 Stack: Next.js (App Router) + TypeScript + pnpm, CSS Modules + CSS variables,
-PostgreSQL via Drizzle (`docs/decisions/0009-web-stack.md`,
+GSAP + `@gsap/react` for UI motion, PostgreSQL via Drizzle (`docs/decisions/0009-web-stack.md`,
 `docs/decisions/0011-postgresql-database.md`). The app is not scaffolded until
 the first implementation story needs it.
 
@@ -21,6 +21,7 @@ the first implementation story needs it.
 - `docs/CONTEXT_RULES.md`
 - `docs/product/PRODUCT.md` — the product brief
 - `docs/DESIGN.md` and `docs/CONTENT_RULES.md` — for any page, copy, or styling work
+- `docs/MOTION.md` — for any page, component, interaction, or animation work
 - `docs/QUICKSTART.md` — first-run setup (build CLI, init db)
 - `.\scripts\bin\harness-cli.exe query matrix` (Windows) or
   `scripts/bin/harness-cli query matrix` (macOS/Linux)
@@ -31,8 +32,10 @@ the first implementation story needs it.
 2. **Never invent facts.** Missing data becomes a visible
    `[CẦN BỔ SUNG: …]` placeholder and an entry in `docs/product/MISSING.md`
    (`docs/CONTENT_RULES.md`).
-3. **Design is decided and justified.** Record the type pair, color system, and
-   layout idea with reasons; styling reads tokens; run the design review in
+3. **Design and motion are decided and justified.** Record the type pair,
+   color system, layout idea, and motion contract with reasons; styling reads
+   tokens; every user-facing route includes GSAP-backed motion unless the
+   owner explicitly requests no motion; run the design review in
    `docs/DESIGN.md` and cite evidence.
 4. **Personal data and the database are high-risk.** Follow
    `docs/decisions/0011-postgresql-database.md`; migrations are reviewed and
