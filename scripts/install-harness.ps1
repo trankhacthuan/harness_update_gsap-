@@ -12,6 +12,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$script:Repository = if ($env:HARNESS_REPOSITORY) { $env:HARNESS_REPOSITORY.Trim("/") } else { "trankhacthuan/harness_update_gsap-" }
 
 function Write-Step([string]$Message) {
     Write-Host $Message
@@ -220,9 +221,9 @@ function Get-DefaultCliBaseUrl {
         $tag = Read-CliReleaseTag
     }
     if (![string]::IsNullOrWhiteSpace($tag) -and $tag -ne "latest") {
-        return "https://github.com/trankhacthuan/harness_w_u/releases/download/$tag"
+        return "https://github.com/$script:Repository/releases/download/$tag"
     }
-    return "https://github.com/trankhacthuan/harness_w_u/releases/latest/download"
+    return "https://github.com/$script:Repository/releases/latest/download"
 }
 
 function Install-HarnessCliBinary {
@@ -359,7 +360,7 @@ $script:Created = 0
 $script:Updated = 0
 $script:Skipped = 0
 $script:Source = Get-SourceMode
-$script:SourceBaseUrl = if ($env:HARNESS_SOURCE_BASE_URL) { $env:HARNESS_SOURCE_BASE_URL.TrimEnd("/") } else { "https://raw.githubusercontent.com/trankhacthuan/harness_w_u/main" }
+$script:SourceBaseUrl = if ($env:HARNESS_SOURCE_BASE_URL) { $env:HARNESS_SOURCE_BASE_URL.TrimEnd("/") } else { "https://raw.githubusercontent.com/$script:Repository/main" }
 $script:CliBaseUrl = if ($env:HARNESS_CLI_BASE_URL) { $env:HARNESS_CLI_BASE_URL.TrimEnd("/") } else { Get-DefaultCliBaseUrl }
 $explicitTarget = ![string]::IsNullOrWhiteSpace($Directory)
 $script:TargetDir = Resolve-TargetPath $Directory

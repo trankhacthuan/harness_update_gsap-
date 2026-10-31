@@ -53,7 +53,7 @@ scripts, CI, tests, or product implementation.
 ## Design Notes
 
 - Commands: `scripts/install-harness.sh [--directory path] [--yes] [--force] [--merge] [--refresh-agent-shim] [--dry-run]`
-- Remote install: `curl -fsSL "https://raw.githubusercontent.com/trankhacthuan/harness_w_u/main/scripts/install-harness.sh?$(date +%s)" | bash -s -- --yes`
+- Remote install: `curl -fsSL "https://raw.githubusercontent.com/trankhacthuan/harness_update_gsap-/main/scripts/install-harness.sh?$(date +%s)" | bash -s -- --yes`
 - Queries: none.
 - API: none.
 - Tables: none.
@@ -110,3 +110,18 @@ interactive users can stop, merge missing files, or back up and override
 protected paths even when the script is piped into a shell, remote-source mode
 works when the script is piped into a shell, and target projects do not receive
 `scripts/install-harness.sh` or this installer story.
+
+### 2026-10-31 repository URL migration
+
+- Updated one-line, clone, source-download, and CLI-release URLs from
+  `trankhacthuan/harness_w_u` to
+  `trankhacthuan/harness_update_gsap-`.
+- `scripts/install-harness.ps1` parsed successfully and its dry-run selected
+  the new source and release URLs.
+- A clean Windows install into a temporary project downloaded and verified the
+  v0.1.10 Windows CLI, initialized `harness.db`, printed
+  `harness-cli 0.1.10`, and ran `query matrix` successfully. The old release
+  URL was injected for this pre-publication test because the new repository did
+  not yet have a release.
+- `bash -n scripts/install-harness.sh` passed with Git Bash.
+- `cargo fmt --check` and `cargo test --workspace` passed; 27 tests passed.

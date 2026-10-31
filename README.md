@@ -16,13 +16,13 @@ no pre-existing folder, no manual build.
 **Windows (PowerShell):**
 
 ```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/trankhacthuan/harness_w_u/main/scripts/install-harness.ps1"))) -Yes
+& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/trankhacthuan/harness_update_gsap-/main/scripts/install-harness.ps1"))) -Yes
 ```
 
 **macOS / Linux / Git Bash:**
 
 ```bash
-curl -fsSL "https://raw.githubusercontent.com/trankhacthuan/harness_w_u/main/scripts/install-harness.sh?$(date +%s)" | bash -s -- --yes
+curl -fsSL "https://raw.githubusercontent.com/trankhacthuan/harness_update_gsap-/main/scripts/install-harness.sh?$(date +%s)" | bash -s -- --yes
 ```
 
 The installer:
@@ -32,7 +32,7 @@ The installer:
    example the Codex app's own install directory), or a read-only location, into
    a new `~/harness_w_u` folder instead.
 2. Downloads the `harness-cli` binary from the
-   [latest release](https://github.com/trankhacthuan/harness_w_u/releases) and
+   [latest release](https://github.com/trankhacthuan/harness_update_gsap-/releases) and
    verifies its SHA-256.
 3. Creates the local `harness.db` (`harness-cli init`).
 4. Prints the next step: `cd` into the folder and run `codex` (or open the folder
@@ -41,11 +41,11 @@ The installer:
 **Choose the folder yourself** — pass a path:
 
 ```powershell
-& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/trankhacthuan/harness_w_u/main/scripts/install-harness.ps1"))) -Yes -Directory "D:\my-site"
+& ([scriptblock]::Create((irm "https://raw.githubusercontent.com/trankhacthuan/harness_update_gsap-/main/scripts/install-harness.ps1"))) -Yes -Directory "D:\my-site"
 ```
 
 ```bash
-curl -fsSL "https://raw.githubusercontent.com/trankhacthuan/harness_w_u/main/scripts/install-harness.sh" | bash -s -- --yes --directory /path/to/my-site
+curl -fsSL "https://raw.githubusercontent.com/trankhacthuan/harness_update_gsap-/main/scripts/install-harness.sh" | bash -s -- --yes --directory /path/to/my-site
 ```
 
 **Other flags** — `--merge` / `--override` (`-Merge` / `-Override`) resolve
@@ -90,8 +90,8 @@ the app is scaffolded (`docs/QUICKSTART.md`).
 
 ```powershell
 # 1. Clone
-git clone https://github.com/trankhacthuan/harness_w_u.git
-cd harness_w_u
+git clone https://github.com/trankhacthuan/harness_update_gsap-.git
+cd harness_update_gsap-
 
 # 2. Build the Harness CLI (git-ignored; every clone does this once)
 cargo build --release -p harness-cli
@@ -190,11 +190,11 @@ then install into each project with `-Directory` / `--directory`.
 ### Windows (PowerShell)
 
 ```powershell
-git clone https://github.com/trankhacthuan/harness_w_u.git D:\Documents\_tools\harness_w_u
-D:\Documents\_tools\harness_w_u\scripts\install-harness.ps1 -Directory "D:\path\to\project" -Yes
+git clone https://github.com/trankhacthuan/harness_update_gsap-.git D:\Documents\_tools\harness_update_gsap-
+D:\Documents\_tools\harness_update_gsap-\scripts\install-harness.ps1 -Directory "D:\path\to\project" -Yes
 ```
 
-- Update the clone: `git -C D:\Documents\_tools\harness_w_u pull`
+- Update the clone: `git -C D:\Documents\_tools\harness_update_gsap- pull`
 - If PowerShell blocks the script, run it as
   `powershell -ExecutionPolicy Bypass -File <script> -Directory "..." -Yes`.
 - Do not paste the `curl … | bash` form into PowerShell: it needs WSL. Use the
@@ -204,26 +204,26 @@ D:\Documents\_tools\harness_w_u\scripts\install-harness.ps1 -Directory "D:\path\
 ### macOS
 
 ```bash
-git clone https://github.com/trankhacthuan/harness_w_u.git ~/tools/harness_w_u
-bash ~/tools/harness_w_u/scripts/install-harness.sh --directory ~/projects/my-site --yes
+git clone https://github.com/trankhacthuan/harness_update_gsap-.git ~/tools/harness_update_gsap-
+bash ~/tools/harness_update_gsap-/scripts/install-harness.sh --directory ~/projects/my-site --yes
 ```
 
 - Needs `git`, `curl`, and `shasum` (macOS provides them; `git` may prompt you
   to install the Xcode command line tools).
 - CLI binary is chosen by CPU: Apple Silicon → `harness-cli-macos-arm64`,
   Intel → `harness-cli-macos-x64`.
-- Update the clone: `git -C ~/tools/harness_w_u pull`
+- Update the clone: `git -C ~/tools/harness_update_gsap- pull`
 
 ### Linux
 
 ```bash
-git clone https://github.com/trankhacthuan/harness_w_u.git ~/tools/harness_w_u
-bash ~/tools/harness_w_u/scripts/install-harness.sh --directory ~/projects/my-site --yes
+git clone https://github.com/trankhacthuan/harness_update_gsap-.git ~/tools/harness_update_gsap-
+bash ~/tools/harness_update_gsap-/scripts/install-harness.sh --directory ~/projects/my-site --yes
 ```
 
 - Needs `git`, `curl`, and `sha256sum` (coreutils).
 - CLI binary: `harness-cli-linux-x64` or `harness-cli-linux-arm64`.
-- Update the clone: `git -C ~/tools/harness_w_u pull`
+- Update the clone: `git -C ~/tools/harness_update_gsap- pull`
 
 ### Flags (all platforms)
 
